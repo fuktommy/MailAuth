@@ -54,14 +54,14 @@ class MailAuth_Storage_Sqlite extends MailAuth_Storage
         $migration->execute(
             "CREATE TABLE IF NOT EXISTS `mailmap`"
             . " (`mail` CHAR PRIMARY KEY NOT NULL,"
-            . "  `hashkey` CHAR UNIQUE NOT NULL,"
+            . "  `hashkey` CHAR NOT NULL,"
             . "  `date` CHAR NOT NULL)"
         );
         $migration->execute(
-            "CREATE INDEX `hashkey` ON `mailmap` (`hashkey`)"
+            "CREATE UNIQUE INDEX `hashkey` ON `mailmap` (`hashkey`)"
         );
         $migration->execute(
-            "CREATE INDEX `date` ON `date` (`date`)"
+            "CREATE INDEX `date` ON `mailmap` (`date`)"
         );
     }
 
